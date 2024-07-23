@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson_14</title>
+    <link rel="stylesheet" href="main_14.css">
+</head>
+<body>
+    <h2>Add new Contack</h2>
+    <form method="GET">
+        <!-- <input type="submit" value="Send"> -->
+        <b>Name</b>
+        <input type="text" placeholder="Enter Name"><br><br>
+        <input type="submit" value="Save">
+        <input type="button" value="One more phone" onclick="add_click()"
+        style="margin-left: 50px;"><br><br>
+        Phone number
+        <input type="text" name="phone" id="ph" placeholder="Enter phone number"><br>
+        Phone type
+        <select name="type">
+            <option value="1" selected>Callular</option>
+            <option value="2">Home</option>
+            <option value="3">Work</option>
+        </select>
+        Priority
+        <input type="radio" name="main" value="1" checked>
+    </form>
+
+    <script src="main_14.js"></script>
+
+</body>
+</html>

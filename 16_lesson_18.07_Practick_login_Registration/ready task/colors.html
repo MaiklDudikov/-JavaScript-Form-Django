@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette</title>
+    <link rel="stylesheet" href="colors.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Color Palette</h1>
+        <div class="form-container">
+            <input type="number" id="red" placeholder="R" min="0" max="255">
+            <input type="number" id="green" placeholder="G" min="0" max="255">
+            <input type="number" id="blue" placeholder="B" min="0" max="255">
+            <button id="addColor">Add color</button>
+        </div>
+        <div id="palette" class="palette">
+            <!-- Color blocks will be appended here -->
+        </div>
+    </div>
+    <script src="colors.js"></script>
+</body>
+</html>

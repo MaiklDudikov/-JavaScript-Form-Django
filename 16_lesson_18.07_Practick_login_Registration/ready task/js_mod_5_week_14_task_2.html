@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .registration-container {
+            background-color: white;
+            padding: 30px 40px 30px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .registration-container h2 {
+            margin-bottom: 20px;
+        }
+        .registration-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .registration-container input[type="text"],
+        .registration-container input[type="email"],
+        .registration-container input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .registration-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .registration-container button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 20px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="registration-container">
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+        <label for="email">Your email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="login">Your login:</label>
+        <input type="text" id="login" name="login" required>
+
+        <label for="password">Your password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="repeatPassword">Repeat password:</label>
+        <input type="password" id="repeatPassword" name="repeatPassword" required>
+
+        <button type="submit">Sign in</button>
+    </form>
+    <p id="confirmationMessage" class="message"></p>
+</div>
+
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const repeatPassword = document.getElementById('repeatPassword').value;
+        const confirmationMessage = document.getElementById('confirmationMessage');
+
+        if (password === repeatPassword) {
+            confirmationMessage.textContent = `На почту ${email} отправлено письмо с подтверждением.`;
+            confirmationMessage.style.color = 'green';
+        } else {
+            confirmationMessage.textContent = 'Пароли не совпадают. Попробуйте снова.';
+            confirmationMessage.style.color = 'red';
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f4f0;
+            padding: 20px;
+        }
+        .form-container, .result-container {
+            background-color: #f9e9de;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container input[type="text"],
+        .form-container input[type="date"],
+        .form-container select {
+            width: calc(50% - 10px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-container input[type="radio"],
+        .form-container input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            margin: 10px 0px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .result-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .result-container th,
+        .result-container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .result-container th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>User Information</h2>
+    <form id="userInfoForm">
+        <input type="text" id="firstname" name="firstname" placeholder="Firstname" required>
+        <input type="text" id="lastname" name="lastname" placeholder="Lastname" required>
+        <input type="date" id="birthday" name="birthday" placeholder="Birthday" required>
+        <div>
+            <label>Gender:</label>
+            <input type="radio" id="male" name="gender" value="Male" required> Male
+            <input type="radio" id="female" name="gender" value="Female"> Female
+        </div>
+        <select id="country" name="country" required>
+            <option value="" disabled selected>Country</option>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">UK</option>
+            <option value="Australia">Australia</option>
+        </select>
+        <input type="text" id="city" name="city" placeholder="City" required>
+        <div>
+            <label>Skills:</label>
+            <input type="checkbox" id="html" name="skills" value="HTML"> HTML
+            <input type="checkbox" id="css" name="skills" value="CSS"> CSS
+            <input type="checkbox" id="js" name="skills" value="JS"> JS
+            <input type="checkbox" id="php" name="skills" value="PHP"> PHP
+            <input type="checkbox" id="cpp" name="skills" value="C++"> C++
+            <input type="checkbox" id="java" name="skills" value="JAVA"> JAVA
+            <input type="checkbox" id="csharp" name="skills" value="C#"> C#
+        </div>
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+<div class="result-container">
+    <h2>Result:</h2>
+    <table id="resultTable">
+        <tr><th>Firstname</th><td id="resultFirstname"></td></tr>
+        <tr><th>Lastname</th><td id="resultLastname"></td></tr>
+        <tr><th>Birthday</th><td id="resultBirthday"></td></tr>
+        <tr><th>Gender</th><td id="resultGender"></td></tr>
+        <tr><th>Country</th><td id="resultCountry"></td></tr>
+        <tr><th>City</th><td id="resultCity"></td></tr>
+        <tr><th>Skills</th><td id="resultSkills"></td></tr>
+    </table>
+</div>
+
+<script>
+    document.getElementById('userInfoForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const firstname = document.getElementById('firstname').value;
+        const lastname = document.getElementById('lastname').value;
+        const birthday = document.getElementById('birthday').value;
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+        const country = document.getElementById('country').value;
+        const city = document.getElementById('city').value;
+        const skills = Array.from(document.querySelectorAll('input[name="skills"]:checked'))
+                            .map(checkbox => checkbox.value)
+                            .join(', ');
+
+        document.getElementById('resultFirstname').textContent = firstname;
+        document.getElementById('resultLastname').textContent = lastname;
+        document.getElementById('resultBirthday').textContent = birthday;
+        document.getElementById('resultGender').textContent = gender;
+        document.getElementById('resultCountry').textContent = country;
+        document.getElementById('resultCity').textContent = city;
+        document.getElementById('resultSkills').textContent = skills;
+    });
+</script>
+
+</body>
+</html>

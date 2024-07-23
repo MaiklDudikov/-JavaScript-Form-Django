@@ -1,0 +1,32 @@
+#logForm{
+    background-color:#5599EE;
+    display:block;
+    height:160px;
+    padding:20px;
+    width:400px;
+}
+
+#formText{
+    color:white;
+    float:left;
+    font-size:40px;
+    font-weight:bold;
+    height:200px;
+    width:200px;
+}
+
+.rounded{
+    border-radius:15px;
+    border-width:0;
+    display:block;
+    height:30px;
+    margin:10px 0;
+    padding: 0px 10px;
+    width:170px;
+}
+
+#enter{
+    background-color:green;
+    color:white;
+    text-align: center;
+}

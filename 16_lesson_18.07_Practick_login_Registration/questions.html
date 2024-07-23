@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question List</title>
+    <link rel="stylesheet" href="questions.css">
+</head>
+<body>
+    <div class="container">
+        <h1>All questions:</h1>
+        <div id="questionsList" class="questions-list">
+            <!-- Questions will be displayed here -->
+        </div>
+        <h2>Add new question:</h2>
+        <form id="questionForm">
+            <label for="question">Question:</label>
+            <input type="text" id="question" required>
+            <label for="correct">Correct answer:</label>
+            <input type="text" id="correct" required>
+            <label for="wrong">Wrong answer:</label>
+            <input type="text" id="wrong" required>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+    <script src="questions.js"></script>
+</body>
+</html>
