@@ -1,1 +1,1 @@
-# -JavaScript-Form-Django
+# Учимся создавать проекты на Django в академии TOP
