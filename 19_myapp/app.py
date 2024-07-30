@@ -30,7 +30,7 @@ def create_user_table():
 # Главная страница
 @app.route('/')
 def index():
-    return 'Welcome to the Flask App! <a href="/register">Register</a> | <a href="/login">Login</a>'
+    return 'Добро пожаловать в приложение Flask! <a href="/register">Register</a> | <a href="/login">Login</a>'
 
 
 # Регистрация
@@ -41,18 +41,18 @@ def register():
         password = request.form['password']
 
         # Хеширование пароля
-        hashed_password = generate_password_hash(password, method='sha256')
+        # hashed_password = generate_password_hash(password, method='sha256')
 
         try:
             conn = get_db_connection()
             conn.execute('INSERT INTO users (username, password) VALUES (?, ?)',
-                         (username, hashed_password))
+                         (username, password))  # hashed_password
             conn.commit()
             conn.close()
-            flash('Registration successful! Please log in.', 'success')
+            flash('Регистрация прошла успешно! Пожалуйста, войдите.', 'success')
             return redirect('/login')
         except sqlite3.IntegrityError:
-            flash('Username already exists. Please choose another one.', 'danger')
+            flash('Имя пользователя уже занято. Пожалуйста, выберите другой', 'danger')
             return render_template('register.html')
 
     return render_template('register.html')
@@ -72,20 +72,30 @@ def login():
         if user and check_password_hash(user['password'], password):
             session['user_id'] = user['id']
             session['username'] = user['username']
-            flash('Login successful!', 'success')
+            flash('Авторизация успешна!', 'success')
             return redirect('/')
         else:
-            flash('Invalid credentials. Please try again.', 'danger')
+            flash('Неверные учетные данные. Пожалуйста, попробуйте еще раз.', 'danger')
 
     return render_template('login.html')
+
+
+@app.route('/profile')
+def profile():
+    if 'user_id' in session:
+        username = session.get('username')
+        return render_template('profile.html', username=username)
+    else:
+        flash('Вы не авторизованы!', 'danger')
+        return redirect('/login')
 
 
 # Выход
 @app.route('/logout')
 def logout():
     session.clear()
-    flash('You have been logged out.', 'success')
-    return redirect('/login')
+    flash('Вы вышли из системы.', 'success')
+    return redirect('/')
 
 
 if __name__ == '__main__':
