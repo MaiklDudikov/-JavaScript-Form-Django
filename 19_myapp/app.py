@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, redirect, flash, session
+from flask import Flask, render_template, request, redirect, flash, session, url_for
 import sqlite3
-from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Замените на ваш секретный ключ
@@ -69,11 +68,12 @@ def login():
         user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
         conn.close()
 
-        if user and check_password_hash(user['password'], password):
+        # and check_password_hash
+        if user(user['password'], password):
             session['user_id'] = user['id']
             session['username'] = user['username']
             flash('Авторизация успешна!', 'success')
-            return redirect('/')
+            return redirect('/profile')
         else:
             flash('Неверные учетные данные. Пожалуйста, попробуйте еще раз.', 'danger')
 
