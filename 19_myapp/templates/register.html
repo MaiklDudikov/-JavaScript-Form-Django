@@ -8,14 +8,14 @@
 <body>
     <h1>Register</h1>
     <form method="POST">
-        <label>First name : </label>
-        <input type="text" name="firstName">
+        <label for="username">Username : </label>
+        <input type="text" name="username" required>
         <br>
-        <label>Last name: </label>
-        <input type="text" name="lastName">
+        <label for="password">Password : </label>
+        <input type="password" name="password" required>
         <br>
-
         <button type="submit">Register</button>
     </form>
+    <p><a href="/login">Login</a></p>
 </body>
 </html>
