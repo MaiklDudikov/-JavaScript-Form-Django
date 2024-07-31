@@ -6,11 +6,11 @@
     <title>Profile</title>
 </head>
 <body>
-    <h1>Profile Page</h1>
-    <p>Welcome, {{ username }}!</p>
+    <h1>Страница Профиля</h1>
+    <p>Привет, {{ username }}!</p>
     <form action="{{ url_for('logout') }}" method="POST">
-        <button type="submit">Log out</button>
+        <button type="submit">Выход</button>
     </form>
-    <p><a href="/">Home</a></p>
+    <p><a href="/">Домой</a></p>
 </body>
 </html>

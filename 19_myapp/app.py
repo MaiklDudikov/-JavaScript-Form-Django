@@ -51,7 +51,7 @@ def register():
             flash('Регистрация прошла успешно! Пожалуйста, войдите.', 'success')
             return redirect('/login')
         except sqlite3.IntegrityError:
-            flash('Имя пользователя уже занято. Пожалуйста, выберите другой', 'danger')
+            flash('Имя пользователя уже занято. Пожалуйста, выберите другое', 'danger')
             return render_template('register.html')
 
     return render_template('register.html')
@@ -69,7 +69,7 @@ def login():
         conn.close()
 
         # and check_password_hash
-        if user(user['password'], password):
+        if user and user['password'] == password:
             session['user_id'] = user['id']
             session['username'] = user['username']
             flash('Авторизация успешна!', 'success')
@@ -95,7 +95,7 @@ def profile():
 def logout():
     session.clear()
     flash('Вы вышли из системы.', 'success')
-    return redirect('/')
+    return redirect('/login')
 
 
 if __name__ == '__main__':
