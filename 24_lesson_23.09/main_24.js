@@ -12,7 +12,9 @@ subbliBtn.onclick = function(){
         request = new ActiveXObject("Microsoft.XMLHTTP");
     }
 
-    request.open("POST", "server.php");
+    // http://localhost:8000/
+
+    request.open("POST", "http://localhost:8000/");
 
     request.onreadystatechange = function(){
         if (request.readyState == 4 && request.status == 200) {
