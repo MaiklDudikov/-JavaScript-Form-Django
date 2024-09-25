@@ -12,6 +12,7 @@ subbliBtn.onclick = function(){
         request = new ActiveXObject("Microsoft.XMLHTTP");
     }
 
+    // python -m server
     // http://localhost:8000/
 
     request.open("POST", "http://localhost:8000/");
