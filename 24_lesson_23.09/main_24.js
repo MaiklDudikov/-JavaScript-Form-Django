@@ -12,10 +12,10 @@ subbliBtn.onclick = function(){
         request = new ActiveXObject("Microsoft.XMLHTTP");
     }
 
-    // python -m server
+    // python -m http.server
     // http://localhost:8000/
 
-    request.open("POST", "http://localhost:8000/");
+    request.open("GET", "server.php");
 
     request.onreadystatechange = function(){
         if (request.readyState == 4 && request.status == 200) {
