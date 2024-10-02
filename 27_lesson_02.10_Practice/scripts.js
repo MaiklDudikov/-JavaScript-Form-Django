@@ -3,14 +3,14 @@ $(document).ready(function () {
         'circle', 'square', 'star', 'triangle', 'heart',
         'circle', 'square', 'star', 'triangle', 'heart'
     ];
-    
+
     let shuffledShapes = [];
     let firstCard = null;
     let secondCard = null;
     let matchedPairs = 0;
     let gameInProgress = false;
 
-    // Перемешиваем карточки
+    // Перемешивание карточек
     function shuffle(array) {
         return array.sort(() => 0.5 - Math.random());
     }
@@ -21,23 +21,36 @@ $(document).ready(function () {
         $('#game-board').empty();
         shuffledShapes.forEach((shape, index) => {
             $('#game-board').append(`
-                <div class="card hidden" data-shape="${shape}" id="card-${index}">
+                <div class="card" data-shape="${shape}" id="card-${index}">
                     <img src="images/${shape}.png" alt="${shape}">
+                    <div class="card-back"></div>
                 </div>
             `);
         });
     }
 
+    // Переворот карточки при клике
+    function flipCard(card) {
+        card.find('.card-back').hide(); // Прячем рубашку
+        card.find('img').show(); // Показываем картинку
+    }
+
+    // Закрытие карточки (поворот рубашкой)
+    function hideCard(card) {
+        card.find('.card-back').show(); // Показываем рубашку
+        card.find('img').hide(); // Прячем картинку
+    }
+
     // Обработка кликов по карточкам
     function cardClickHandler() {
-        if (!gameInProgress || $(this).hasClass('matched')) return;
+        if (!gameInProgress || $(this).hasClass('matched') || $(this).find('img').is(':visible')) return;
 
         if (!firstCard) {
             firstCard = $(this);
-            firstCard.removeClass('hidden');
+            flipCard(firstCard);
         } else if (!secondCard && firstCard[0] !== this) {
             secondCard = $(this);
-            secondCard.removeClass('hidden');
+            flipCard(secondCard);
 
             checkMatch();
         }
@@ -59,8 +72,8 @@ $(document).ready(function () {
             resetSelection();
         } else {
             setTimeout(() => {
-                firstCard.addClass('hidden');
-                secondCard.addClass('hidden');
+                hideCard(firstCard);
+                hideCard(secondCard);
                 resetSelection();
             }, 1000);
         }
@@ -79,11 +92,14 @@ $(document).ready(function () {
         gameInProgress = true;
         $('#message').addClass('hidden');
         $('#start-btn').text('FINISH');
+        $('.card img').hide(); // Скрываем все картинки
+        $('.card-back').show(); // Показываем рубашку на всех карточках
     }
 
     // Прекращение игры
     function finishGame() {
-        $('.card').removeClass('hidden');
+        $('.card img').show(); // Показываем все картинки
+        $('.card-back').hide(); // Прячем все рубашки
         gameInProgress = false;
         $('#start-btn').text('START');
     }
